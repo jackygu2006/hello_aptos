@@ -33,7 +33,7 @@ export const Faucet = () => {
         faucetRequire
       );
       if (faucet.length > 0) {
-        setBalance(await accountBalance(client, account.address()));
+        await refreshBalance();
         setFaucetRequire(0);
       }
     } catch (e) {
@@ -57,7 +57,11 @@ export const Faucet = () => {
       setBalance(await accountBalance(client, _account.address()));
     } catch (e) {}
   };
-
+  
+  const refreshBalance = async () => {
+    setBalance(await accountBalance(client, account.address()));
+  }
+  
   return (
     <div>
       <div>
@@ -69,6 +73,9 @@ export const Faucet = () => {
       </div>
       <div>{`Account: ${account !== "" ? account.address() : ""}`}</div>
       <div>{`Balance: ${balance} APT`}</div>
+      <div>
+          <button onClick={() => refreshBalance()}>Refresh Balance</button>
+      </div>
       <input
         value={faucetRequire}
         onChange={(e) => setFaucetRequire(e.target.value)}
