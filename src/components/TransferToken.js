@@ -10,14 +10,20 @@ import {
 } from "aptos";
 import { accountBalance } from "../utils";
 import "../styles.css";
-import { NODE_URL, FAUCET_URL } from "./Faucet";
+import { useAuth } from "../contexts/AuthContext";
 
 export const TransferToken = () => {
   const [tokenAddress, setTokenAddress] = useState("");
   const [to, setTo] = useState("");
+  const {
+      client,
+      currentAccount,
+      currentPriKey,
+  } = useAuth();
 
   const transfer = () => {
     console.log(tokenAddress);
+    
   };
   return (
     <div>
