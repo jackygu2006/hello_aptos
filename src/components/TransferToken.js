@@ -10,22 +10,11 @@ import {
 } from "aptos";
 import { accountBalance } from "../utils";
 import "../styles.css";
-import { useAuth } from "../contexts/AuthContext";
+
 export const TransferToken = (props) => {
-	const [privateKey, setPrivateKey] = useState("");
-  const [tokenAddress, setTokenAddress] = useState("");
+	const [tokenAddress, setTokenAddress] = useState("");
   const [to, setTo] = useState("");
-
-	// const {
-	// 	currentPriKey
-	// } = useAuth();
-
-	useEffect(() => {
-		console.log("333", props.priKey);
-		setPrivateKey(props.priKey);
-
-	}, [props])
-
+	
   const transfer = () => {
     console.log(privateKey);
     

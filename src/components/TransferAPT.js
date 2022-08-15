@@ -13,12 +13,11 @@ import "../styles.css";
 
 export const TransferAPT = (props) => {
 	const [privateKey, setPrivateKey] = useState("");
-  const [to, setTo] = useState("");
+  const [to, setTo] = useState("0xf5e7d4f63bc04ab3a8ae990af28e1b4f9a6b7834c39995f2d147fd406d79f8b3");
 	const [hash, setHash] = useState("");
 	const [amount, setAmount] = useState(0);
 
 	useEffect(() => {
-		console.log("222", props.priKey);
 		setPrivateKey(props.priKey);
 	}, [props])
 
@@ -26,8 +25,12 @@ export const TransferAPT = (props) => {
 	new AptosAccount(new HexString(hexString).toUint8Array());
 
   const transferTo = async () => {
-    const hash = await transfer(props.client, privateKeyHexToAccount(privateKey), to, amount);
-		setHash("hash: " + hash);
+		try {
+			const hash = await transfer(props.client, privateKeyHexToAccount(privateKey), to, amount);
+			setHash("hash: " + hash);	
+		} catch (e) {
+			setHash(e.message);
+		}
   };
 
 	return (

@@ -55,7 +55,6 @@ export const Faucet = (props) => {
 				setBalance(await accountBalance(client, _account.address()));
 			} catch (e) {}
 		};
-		console.log("111", props.priKey);
 		getAccount(props.priKey);
 	}, [props])
   
