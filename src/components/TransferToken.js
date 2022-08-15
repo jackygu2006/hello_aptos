@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   AptosAccount,
   AptosClient,
@@ -11,18 +11,23 @@ import {
 import { accountBalance } from "../utils";
 import "../styles.css";
 import { useAuth } from "../contexts/AuthContext";
-
-export const TransferToken = () => {
+export const TransferToken = (props) => {
+	const [privateKey, setPrivateKey] = useState("");
   const [tokenAddress, setTokenAddress] = useState("");
   const [to, setTo] = useState("");
-  const {
-      client,
-      currentAccount,
-      currentPriKey,
-  } = useAuth();
+
+	// const {
+	// 	currentPriKey
+	// } = useAuth();
+
+	useEffect(() => {
+		console.log("333", props.priKey);
+		setPrivateKey(props.priKey);
+
+	}, [props])
 
   const transfer = () => {
-    console.log(tokenAddress);
+    console.log(privateKey);
     
   };
   return (
