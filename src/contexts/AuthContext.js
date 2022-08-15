@@ -16,6 +16,7 @@ export function AuthProvider({ children }) {
         currentAccount, setCurrentAccount,
         currentNetwork, setCurrentNetwork,
         currentPriKey, setCurrentPriKey,
+        client, setClient,
     }
 
     return (
